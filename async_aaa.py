@@ -5,7 +5,7 @@ async def main():
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page()
-        await page.goto("https://lavk.yandex.ru/")
+        await page.goto("https://www.litres.ru/")
         await page.screenshot(path="FirstAsyncTest.png")
         await browser.close()
 

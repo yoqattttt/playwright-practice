@@ -4,7 +4,7 @@ with sync_playwright() as p:
     browser = p.chromium.launch(headless=False)
     page = browser.new_page()
     page.goto("https://www.litres.ru/")
-    page.screenshot(path="FirstTest.png")
+    page.screenshot(path="screenshots/FirstTest.png")
     browser.close()
 
 

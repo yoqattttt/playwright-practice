@@ -1,30 +1,28 @@
 from playwright.sync_api import Page, expect
+from urllib.parse import quote_plus
 
-def test_main_actions(page, home):
+def test_main_actions(page, home, results):
 
     page.locator("button:has-text('Принять')").click()
 
     query = "python"
     home.search(query, True)
+    expect(page).to_have_url(f"https://www.litres.ru/search/?q={query}")
 
-    expect(page.get_by_text("Результаты поиска «python»")).to_be_visible(timeout=20000)
-    page.locator("xpath=//*[@aria-description='Книги, которые можно читать без ограничений с активной Литрес: Подпиской']").dblclick()
-    page.locator("xpath=//*[@aria-description='Книги, которые можно взять по Литрес: Абонементу']").click()
-
-    page.check("label[for='languages-ru']")
+    results.apply_ru_filter()
+    expect(results.ru_chip).to_be_visible()
 
     page.screenshot(path="screenshots/Swither.png")
-    page.pause()
 
 
-def test_waiting(page, home):
+def test_waiting(page, home, results):
+
+    page.locator("button:has-text('Принять')").click()
 
     query = "Фридрих Ницше"
-    home.search(query)
+    home.search(query, True)
+    expect(page).to_have_url(f"https://www.litres.ru/search/?q={quote_plus(query)}")
 
-    expect(page.get_by_text("Результаты поиска «Фридрих Ницше»")).to_be_visible(timeout=8000)
-    expect(page).to_have_title("Результаты поиска по книгам: «Фридрих Ницше»")
-
-    books = page.get_by_test_id("art__wrapper")
-    expect(books).to_have_count(24, timeout=7000)
+    expect(results.results_title).to_contain_text(query)
+    expect(results.books).to_have_count(24, timeout=7000)
 

@@ -4,6 +4,7 @@ from pages.base_page import BasePage
 class HomePage(BasePage):
 
     # Локаторы
+
     @property
     def search_input(self) -> Locator:
 

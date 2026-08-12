@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 from urllib.parse import quote_plus
 
-def test_main_actions(page, home, results):
+def test_filters(page, home, results):
 
     page.locator("button:has-text('Принять')").click()
 
@@ -15,7 +15,7 @@ def test_main_actions(page, home, results):
     page.screenshot(path="screenshots/Swither.png")
 
 
-def test_waiting(page, home, results):
+def test_results_count(page, home, results):
 
     page.locator("button:has-text('Принять')").click()
 

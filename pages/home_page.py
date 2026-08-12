@@ -26,3 +26,7 @@ class HomePage(BasePage):
             self.page.keyboard.press("Enter")
         else:
             self.search_button.click()
+
+    def accept_cookies(self) -> None:
+
+        self.page.locator("button:has-text('Принять')").click()

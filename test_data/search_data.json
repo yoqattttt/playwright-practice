@@ -1,0 +1,28 @@
+{
+  "search_input": [
+    {
+      "id": "python_books",
+      "query": "Python",
+      "expected_results_count": 24,
+      "description": "Поиск книг по Python"
+    },
+    {
+      "id": "game_of_thrones",
+      "query": "Игра Престолов",
+      "expected_results_count": 24,
+      "description": "Поиск книг Игра Престолов"
+    },
+    {
+      "id": "stephen_king",
+      "query": "Стивен Кинг",
+      "expected_results_count": 24,
+      "description": "Поиск книг Стивена Кинга"
+    },
+    {
+      "id": "harlan_ellison",
+      "query": "Харлан Эллисон",
+      "expected_results_count": 14,
+      "description": "Поиск книг Харлана Эллисона"
+    }
+  ]
+}

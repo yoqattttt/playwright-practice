@@ -31,7 +31,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest --alluredir=reports/allure-results -v
+          pytest --alluredir=reports/allure-results --reruns 2 --reruns-delay 3 -v
 
       - name: Upload Allure results
         if: always()

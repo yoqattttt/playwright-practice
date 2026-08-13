@@ -1,5 +1,6 @@
 from playwright.sync_api import Locator
 from pages.base_page import BasePage
+import allure
 
 class HomePage(BasePage):
 
@@ -18,6 +19,7 @@ class HomePage(BasePage):
 
     # Действия
 
+    @allure.step("Поиск книги {query}")
     def search(self, query: str, submit_with_enter: bool = False) -> None:
 
         self.search_input.fill(query)
@@ -27,6 +29,7 @@ class HomePage(BasePage):
         else:
             self.search_button.click()
 
+    @allure.step("Закрытие cookies")
     def accept_cookies(self) -> None:
 
         self.page.locator("button:has-text('Принять')").click()

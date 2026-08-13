@@ -1,5 +1,6 @@
 from playwright.sync_api import Locator
 from pages.base_page import BasePage
+import allure
 
 class SearchResultsPage(BasePage):
 
@@ -27,5 +28,6 @@ class SearchResultsPage(BasePage):
 
     # Действия
 
+    @allure.step("Применение RU фильтра")
     def apply_ru_filter(self) -> None:
         self.ru_filter.check()

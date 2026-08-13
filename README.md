@@ -1,4 +1,4 @@
-# Litres.ru Playwright Autotests
+# Playwright Autotests Litres.ru
 
 ![CI](https://github.com/yoqattttt/playwright-ui-tests/actions/workflows/ci.yml/badge.svg)
 

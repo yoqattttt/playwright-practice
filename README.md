@@ -1,75 +1,83 @@
-# Litres.ru — Playwright автотесты
- 
-Автоматизированные UI-тесты сайта litres.ru на Python + Playwright + pytest.
-Реализовано в стиле Page Object Model, с параметризацией данных из JSON и
-генерацией отчётов Allure.
- 
-## Стек
- 
+# Litres.ru Playwright Autotests
+
+![CI](https://github.com/yoqattttt/playwright-ui-tests/actions/workflows/ci.yml/badge.svg)
+
+Automated UI tests for litres.ru built with Python + Playwright + pytest.
+Implemented using the Page Object Model pattern, with data-driven
+parametrization from JSON and Allure report generation.
+
+## Stack
+
 - Python 3.14
 - Playwright (sync API)
-- pytest
-- Allure (отчёты)
+- Pytest
+- Allure (reports)
 - Page Object Model
-## Структура проекта
- 
-```
-├── pages/                    # Page Object классы
-│   ├── base_page.py
-│   ├── home_page.py
-│   └── search_results_page.py
+
+## Project structure
+
+```├── .github/
+│ └── workflows/
+│ └── ci.yml # GitHub Actions CI
+├── pages/ # Page Object classes
+│ ├── init.py
+│ ├── base_page.py
+│ ├── home_page.py
+│ └── search_results_page.py
 ├── test_data/
-│   └── search_data.json      # данные для параметризованных тестов
-├── tests/                    # основные тесты (Page Object Model)
-│   └── test_search.py
-├── sandbox/                  # черновые/учебные тесты без POM
-│   ├── test_locators.py
-│   ├── test_search.py
-│   └── test_titles.py
-├── reports/                  # allure-отчёты (генерируются, не хранятся в git)
-├── conftest.py                # фикстуры (home, results, screen_on_fail)
+│ └── search_data.json # data for parametrized tests
+├── tests/ # main tests (Page Object Model)
+│ ├── init.py
+│ └── test_search.py
+├── sandbox/ # tests without POM, written while learning Playwright
+│ ├── init.py
+│ ├── test_locators.py
+│ ├── test_search.py
+│ └── test_titles.py
+├── reports/ # Allure reports (generated, not stored in git)
+├── conftest.py # fixtures (home, results, screen_on_fail)
 └── requirements.txt
 ```
- 
-> `sandbox/` — черновые тесты, написанные в процессе изучения Playwright,
-> без Page Object Model. Оставлены для истории, актуальные тесты — в `tests/`.
- 
-## Установка
- 
+
+> `sandbox/` — tests without the Page Object Model, written while learning
+> Playwright. Also run in CI alongside the main tests in `tests/`.
+
+## Installation
+
 ```bash
 python -m venv .venv
 .venv\Scripts\activate      # Windows
 pip install -r requirements.txt
 playwright install
 ```
- 
-## Запуск тестов
- 
-Все тесты:
+
+## Running tests
+
+All tests:
 ```bash
 pytest
 ```
- 
-Конкретный файл:
+
+A specific file:
 ```bash
 pytest tests/test_search.py
 ```
- 
-Конкретный тест:
+
+A specific test:
 ```bash
 pytest tests/test_search.py::test_filters
 ```
- 
-## Отчёт Allure
- 
+
+## Allure report
+
 ```bash
 pytest --alluredir=reports/allure_report
 allure serve reports/allure_report
 ```
- 
-## Особенности реализации
- 
-- Page Object Model с разделением на локаторы и действия
-- Параметризация тестов данными из `search_data.json`
-- Автоматический скриншот при падении теста (фикстура `screen_on_fail`)
-- Устойчивые локаторы (`data-testid`, `get_by_role`) вместо хрупких CSS/XPath где возможно
+
+## Technical details
+
+- Page Object Model with locators and actions separated
+- Test parametrization using data from `search_data.json`
+- Automatic screenshot on test failure (`screen_on_fail` fixture)
+- Resilient locators (`data-testid`, `get_by_role`) preferred over fragile CSS/XPath where possible

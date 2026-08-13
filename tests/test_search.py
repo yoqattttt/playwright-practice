@@ -19,5 +19,5 @@ def test_results_count(home, results, td):
     allure.dynamic.title(td.description)
     home.accept_cookies()
     home.search(td.query, True)
-    expect(results.results_title).to_contain_text(td.query, timeout=8000)
+    expect(results.results_title).to_contain_text(td.query, timeout=15000)
     expect(results.books).to_have_count(td.expected_count, timeout=8000)

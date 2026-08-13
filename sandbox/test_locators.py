@@ -8,7 +8,7 @@ def test_locator_role(page: Page):
 def test_locator_placeholder(page: Page):
     page.get_by_placeholder("Искать на Литрес").fill("Иммануил Кант")
     page.keyboard.press("Enter")
-    expect(page.get_by_text("Результаты поиска «Иммануил Кант»")).to_be_visible()
+    expect(page.get_by_text("Результаты поиска «Иммануил Кант»")).to_be_visible(timeout=10000)
 
 def test_locator_datatestid(page: Page):
     page.get_by_test_id("basketTabIcon").click()
